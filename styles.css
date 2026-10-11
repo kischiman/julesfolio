@@ -1,12 +1,19 @@
-/* Change the two font families here (and the Google Fonts link in each page's <head>). */
+/* Visual style follows the business card: Geist Mono, near-black ink on warm off-white,
+   with the purple artwork from the back of the card as the illustration. */
+@font-face {
+  font-family: "Geist Mono";
+  src: url("assets/fonts/GeistMono-Regular.otf") format("opentype");
+  font-weight: 400 500;
+  font-display: swap;
+}
+
 :root {
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-body: "DM Mono", ui-monospace, Menlo, monospace;
-  --ink: #000;
-  --paper: #fff;
-  --muted: #5c5c5c;
-  --rule: #000;
-  --hair: #d9d9d9;
+  --font: "Geist Mono", ui-monospace, Menlo, monospace;
+  --ink: #121212;
+  --paper: #f1f1ef;
+  --muted: #6a6a68;
+  --hair: #d4d4d0;
+  --accent: #6d3f7f;
   --page: 1040px;
 }
 
@@ -18,13 +25,14 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 15px;
+  font-family: var(--font);
+  font-size: 14px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: inherit; }
+a { color: inherit; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
 
 .wrap {
   max-width: var(--page);
@@ -38,22 +46,26 @@ a { color: inherit; }
   top: 0;
   z-index: 10;
   background: var(--paper);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--ink);
 }
 .nav .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  min-height: 64px;
+  min-height: 68px;
   flex-wrap: wrap;
 }
 .brand {
-  font-family: var(--font-display);
-  font-size: 26px;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: none;
 }
+.brand img { width: 34px; height: 34px; display: block; }
 .nav ul {
   display: flex;
   align-items: center;
@@ -64,109 +76,114 @@ a { color: inherit; }
 }
 .nav ul a {
   font-size: 12px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
   padding: 6px 0;
   border-bottom: 1px solid transparent;
 }
 .nav ul a:hover,
-.nav ul a[aria-current="page"] { border-bottom-color: var(--ink); }
-.nav ul a.btn,
-.btn {
-  display: inline-block;
+.nav ul a[aria-current="page"] { border-bottom-color: currentColor; }
+.nav ul a.btn {
   padding: 10px 20px;
   background: var(--ink);
   color: var(--paper);
   border: 1px solid var(--ink);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
 }
-.nav ul a.btn:hover,
-.btn:hover { background: var(--paper); color: var(--ink); }
+.nav ul a.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 
 /* Business card */
 .card {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 260px;
   gap: 48px;
+  margin: 72px 0 0;
+  min-height: 420px;
+}
+.card .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+}
+.card .id {
+  display: flex;
   align-items: center;
-  margin: 64px 0 0;
-  padding: 48px;
-  border: 1px solid var(--rule);
+  gap: 28px;
 }
+.card .id img { width: 84px; height: 84px; flex: none; }
 .card h1 {
-  font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(56px, 9vw, 104px);
-  line-height: 0.95;
-  margin: 0;
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
 }
-.card .hanzi {
-  font-size: 22px;
-  letter-spacing: 0.3em;
-  margin: 12px 0 28px;
-}
-.card .roles {
-  list-style: none;
-  margin: 0 0 24px;
-  padding: 0;
-  font-size: 13px;
-}
-.card .tagline {
-  max-width: 44ch;
-  margin: 0 0 28px;
-  color: var(--muted);
-}
-.card .where {
-  font-size: 11px;
-  letter-spacing: 0.14em;
+.card .fields {
+  font-size: clamp(12px, 1.6vw, 15px);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.card img {
+.card .tagline {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--muted);
+}
+.card dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  row-gap: 6px;
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.card dd { margin: 0; }
+.card .photo {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 1;
   object-fit: cover;
   filter: grayscale(1) contrast(1.05);
-  border: 1px solid var(--rule);
+  mix-blend-mode: multiply;
 }
 .illustration {
   display: block;
   width: 100%;
   height: auto;
-  margin: 40px 0 0;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  margin: 72px 0 0;
 }
 
 /* Sections */
 section { padding: 88px 0 0; }
 .label {
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin: 0 0 24px;
+  margin: 0 0 28px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--ink);
 }
 h2 {
-  font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(34px, 5vw, 52px);
-  line-height: 1.05;
+  font-size: clamp(22px, 3.2vw, 32px);
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   margin: 0 0 16px;
 }
 .lede {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 3.2vw, 34px);
-  line-height: 1.25;
-  max-width: 30em;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.6;
+  max-width: 44em;
   margin: 0 0 20px;
 }
 .sub {
-  max-width: 62ch;
+  max-width: 64ch;
   color: var(--muted);
   margin: 0 0 40px;
 }
@@ -174,22 +191,21 @@ h2 {
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
   margin: 0 0 56px;
 }
 .stats div { padding: 24px 0; }
-.stats div + div { padding-left: 24px; border-left: 1px solid var(--rule); }
+.stats div + div { padding-left: 24px; border-left: 1px solid var(--ink); }
 .stats strong {
   display: block;
-  font-family: var(--font-display);
   font-weight: 400;
-  font-size: 56px;
-  line-height: 1;
+  font-size: 48px;
+  line-height: 1.1;
 }
 .stats span {
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -208,57 +224,60 @@ h2 {
 }
 .entry .meta b {
   display: block;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--ink);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-size: 11px;
 }
 .entry h3 {
-  font-family: var(--font-display);
   font-weight: 400;
-  font-size: 28px;
-  line-height: 1.15;
+  font-size: 17px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   margin: 0 0 2px;
 }
-.entry .org { margin: 0 0 12px; font-size: 13px; }
+.entry h3 a { text-decoration: none; }
+.entry h3 a:hover { text-decoration: underline; }
+.entry .org { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
 .entry p { margin: 0 0 12px; max-width: 68ch; }
 .entry ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; }
 .entry .tags {
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
 }
-.entry .more { font-size: 12px; letter-spacing: 0.08em; }
+.entry .more { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* Contact */
 .links {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
   margin: 0 0 40px;
 }
 .links a {
   display: block;
   padding: 20px;
   text-decoration: none;
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
 }
 .links a:hover { background: var(--ink); color: var(--paper); }
 .links a:hover span { color: var(--paper); }
-.links b { display: block; font-weight: 500; }
+.links b { display: block; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
 .links span { font-size: 12px; color: var(--muted); }
 
 .page-head { padding-top: 72px; }
 
 footer {
   margin-top: 96px;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--ink);
   font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 footer .wrap {
   display: flex;
@@ -268,15 +287,18 @@ footer .wrap {
   padding-top: 28px;
   padding-bottom: 40px;
 }
-footer nav { display: flex; flex-wrap: wrap; gap: 20px; }
 
 @media (max-width: 760px) {
   .nav .wrap { padding-top: 12px; padding-bottom: 12px; }
   .nav ul { gap: 16px; flex-wrap: wrap; }
-  .card { grid-template-columns: 1fr 120px; gap: 20px; padding: 24px; margin-top: 32px; align-items: start; }
-  .card .hanzi { font-size: 16px; margin: 8px 0 20px; }
+  .card { grid-template-columns: 1fr 96px; gap: 16px; margin-top: 40px; min-height: 0; }
+  .card .id { gap: 14px; align-items: flex-start; }
+  .card .id img { width: 48px; height: 48px; }
+  .card dl { grid-template-columns: 64px 1fr; font-size: 12px; }
+  .illustration, section { margin-top: 0; }
+  .illustration { margin-top: 48px; }
   section { padding-top: 64px; }
-  .stats strong { font-size: 40px; }
+  .stats strong { font-size: 34px; }
   .stats div + div { padding-left: 12px; }
   .entry { grid-template-columns: 1fr; gap: 8px; }
 }
