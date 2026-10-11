@@ -1,5 +1,5 @@
 /* Visual style follows the business card: Geist Mono, near-black ink on warm off-white,
-   with the purple artwork from the back of the card as the illustration. */
+   with the purple from the back of the card as the accent. */
 @font-face {
   font-family: "Geist Mono";
   src: url("assets/fonts/GeistMono-Regular.otf") format("opentype");
@@ -149,15 +149,6 @@ a:hover { color: var(--accent); }
   filter: grayscale(1) contrast(1.05);
   mix-blend-mode: multiply;
 }
-.illustration {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 1;
-  object-fit: cover;
-  margin: 72px 0 0;
-}
-
 /* Sections */
 section { padding: 88px 0 0; }
 .label {
@@ -295,8 +286,6 @@ footer .wrap {
   .card .id { gap: 14px; align-items: flex-start; }
   .card .id img { width: 48px; height: 48px; }
   .card dl { grid-template-columns: 64px 1fr; font-size: 12px; }
-  .illustration, section { margin-top: 0; }
-  .illustration { margin-top: 48px; }
   section { padding-top: 64px; }
   .stats strong { font-size: 34px; }
   .stats div + div { padding-left: 12px; }
