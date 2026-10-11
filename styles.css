@@ -1,0 +1,282 @@
+/* Change the two font families here (and the Google Fonts link in each page's <head>). */
+:root {
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "DM Mono", ui-monospace, Menlo, monospace;
+  --ink: #000;
+  --paper: #fff;
+  --muted: #5c5c5c;
+  --rule: #000;
+  --hair: #d9d9d9;
+  --page: 1040px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.wrap {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Navigation */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  flex-wrap: wrap;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 26px;
+  line-height: 1;
+  text-decoration: none;
+}
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav ul a {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+}
+.nav ul a:hover,
+.nav ul a[aria-current="page"] { border-bottom-color: var(--ink); }
+.nav ul a.btn,
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav ul a.btn:hover,
+.btn:hover { background: var(--paper); color: var(--ink); }
+
+/* Business card */
+.card {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: center;
+  margin: 64px 0 0;
+  padding: 48px;
+  border: 1px solid var(--rule);
+}
+.card h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(56px, 9vw, 104px);
+  line-height: 0.95;
+  margin: 0;
+}
+.card .hanzi {
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  margin: 12px 0 28px;
+}
+.card .roles {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  font-size: 13px;
+}
+.card .tagline {
+  max-width: 44ch;
+  margin: 0 0 28px;
+  color: var(--muted);
+}
+.card .where {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  border: 1px solid var(--rule);
+}
+.illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 40px 0 0;
+}
+
+/* Sections */
+section { padding: 88px 0 0; }
+.label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.05;
+  margin: 0 0 16px;
+}
+.lede {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.2vw, 34px);
+  line-height: 1.25;
+  max-width: 30em;
+  margin: 0 0 20px;
+}
+.sub {
+  max-width: 62ch;
+  color: var(--muted);
+  margin: 0 0 40px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin: 0 0 56px;
+}
+.stats div { padding: 24px 0; }
+.stats div + div { padding-left: 24px; border-left: 1px solid var(--rule); }
+.stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+}
+.stats span {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Entries: experience, talks, projects, writing */
+.entry {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-top: 1px solid var(--hair);
+}
+.entry:first-of-type { border-top: 0; padding-top: 0; }
+.entry .meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+.entry .meta b {
+  display: block;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+.entry h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.15;
+  margin: 0 0 2px;
+}
+.entry .org { margin: 0 0 12px; font-size: 13px; }
+.entry p { margin: 0 0 12px; max-width: 68ch; }
+.entry ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; }
+.entry .tags {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.entry .more { font-size: 12px; letter-spacing: 0.08em; }
+
+/* Contact */
+.links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+  margin: 0 0 40px;
+}
+.links a {
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.links a:hover { background: var(--ink); color: var(--paper); }
+.links a:hover span { color: var(--paper); }
+.links b { display: block; font-weight: 500; }
+.links span { font-size: 12px; color: var(--muted); }
+
+.page-head { padding-top: 72px; }
+
+footer {
+  margin-top: 96px;
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+}
+footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 28px;
+  padding-bottom: 40px;
+}
+footer nav { display: flex; flex-wrap: wrap; gap: 20px; }
+
+@media (max-width: 760px) {
+  .nav .wrap { padding-top: 12px; padding-bottom: 12px; }
+  .nav ul { gap: 16px; flex-wrap: wrap; }
+  .card { grid-template-columns: 1fr 120px; gap: 20px; padding: 24px; margin-top: 32px; align-items: start; }
+  .card .hanzi { font-size: 16px; margin: 8px 0 20px; }
+  section { padding-top: 64px; }
+  .stats strong { font-size: 40px; }
+  .stats div + div { padding-left: 12px; }
+  .entry { grid-template-columns: 1fr; gap: 8px; }
+}
